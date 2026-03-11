@@ -63,4 +63,4 @@ Avion = (ID_avion VARCHAR(15), Code_avion VARCHAR(10), #IATA, #Code_pays);\
 Vol = (UUID_vol CHAR(36), Code_vol VARCHAR(50), Date_départ_GMT_1_ DATETIME, Date_arrivé_GMT_1_ DATETIME, #ID_avion);\
 Vol_Voyageurs = (#UUID_vol, #UUID_voyageur);\
 Vol_Employer = (#UUID_vol, #UUID_employer);\
-Vol_Aéroport = (#ICAO, #UUID_vol);\
+Vol_Aéroport = (#ICAO, #UUID_vol);
