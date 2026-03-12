@@ -6,7 +6,7 @@ CREATE TABLE pays(
 
 CREATE TABLE Aéroport(
                          ICAO CHAR(4),
-                         IATA CHAR(3) NOT NULL,
+                         IATA_aéroport CHAR(3) NOT NULL,
                          Ville VARCHAR(50),
                          Code_pays VARCHAR(50) NOT NULL,
                          PRIMARY KEY(ICAO),
@@ -14,11 +14,11 @@ CREATE TABLE Aéroport(
 );
 
 CREATE TABLE Compagnie_aérienne(
-                                   IATA CHAR(2),
+                                   IATA_compagnie CHAR(2),
                                    Nom VARCHAR(50),
                                    Date_création DATE,
                                    Code_pays VARCHAR(50) NOT NULL,
-                                   PRIMARY KEY(IATA),
+                                   PRIMARY KEY(IATA_compagnie),
                                    FOREIGN KEY(Code_pays) REFERENCES pays(Code_pays)
 );
 
@@ -30,10 +30,10 @@ CREATE TABLE Employer(
                          Date_embauche VARCHAR(50),
                          Role VARCHAR(50),
                          Code_pays VARCHAR(50) NOT NULL,
-                         IATA CHAR(2) NOT NULL,
+                         IATA_compagnie CHAR(2) NOT NULL,
                          PRIMARY KEY(UUID_employer),
                          FOREIGN KEY(Code_pays) REFERENCES pays(Code_pays),
-                         FOREIGN KEY(IATA) REFERENCES Compagnie_aérienne(IATA)
+                         FOREIGN KEY(IATA_compagnie) REFERENCES Compagnie_aérienne(IATA_compagnie)
 );
 
 CREATE TABLE Voyageur(
@@ -50,10 +50,10 @@ CREATE TABLE Voyageur(
 CREATE TABLE Avion(
                       ID_avion VARCHAR(15),
                       Code_avion VARCHAR(10),
-                      IATA CHAR(2) NOT NULL,
+                      IATA_compagnie CHAR(2) NOT NULL,
                       Code_pays VARCHAR(50) NOT NULL,
                       PRIMARY KEY(ID_avion),
-                      FOREIGN KEY(IATA) REFERENCES Compagnie_aérienne(IATA),
+                      FOREIGN KEY(IATA_compagnie) REFERENCES Compagnie_aérienne(IATA_compagnie),
                       FOREIGN KEY(Code_pays) REFERENCES pays(Code_pays)
 );
 
