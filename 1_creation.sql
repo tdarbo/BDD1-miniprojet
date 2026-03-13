@@ -67,7 +67,7 @@ CREATE TABLE Vol(
                     FOREIGN KEY(ID_avion) REFERENCES Avion(ID_avion)
 );
 
-CREATE TABLE Vol_Voyageurs(
+CREATE TABLE Vol_Voyageur(
                               UUID_vol CHAR(36),
                               UUID_voyageur CHAR(36),
                               PRIMARY KEY(UUID_vol, UUID_voyageur),
