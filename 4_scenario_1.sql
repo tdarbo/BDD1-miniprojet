@@ -1,8 +1,8 @@
 select Nom,Prénom,nom_pays
 from (
-select Nom,Prénom,Code_pays from Voyageur where UUID_voyageur in (select UUID_voyageur from Vol_voyageur join vol using (UUID_vol)) 
+select Nom,Prénom,Code_pays from Voyageur where UUID_voyageur in (select UUID_voyageur from Vol_voyageur join vol using (UUID_vol) where ID_avion='') 
 union all 
-select Nom,Prénom,Code_pays from Employer where UUID_employer in (select UUID_employer from Vol_employer join vol using (UUID_vol))
+select Nom,Prénom,Code_pays from Employer where UUID_employer in (select UUID_employer from Vol_employer join vol using (UUID_vol) where ID_avion='')
 ) as a_sauver join pays using (code_pays) order by nom_pays,nom,prénom asc;
 
 alter table avion
