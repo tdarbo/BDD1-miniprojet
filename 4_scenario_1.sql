@@ -1,9 +1,9 @@
-select Nom,Prénom 
+select Nom,Prénom,nom_pays
 from (
-select Nom,Prénom from Voyageur where UUID_voyageur in (select UUID_voyageur from Vol_voyageur join vol using (UUID_vol)) 
+select Nom,Prénom,Code_pays from Voyageur where UUID_voyageur in (select UUID_voyageur from Vol_voyageur join vol using (UUID_vol)) 
 union all 
-select Nom,Prénom from Employer where UUID_employer in (select UUID_employer from Vol_employer join vol using (UUID_vol))
-) as a_sauver;
+select Nom,Prénom,Code_pays from Employer where UUID_employer in (select UUID_employer from Vol_employer join vol using (UUID_vol))
+) as a_sauver join pays using (code_pays) order by nom_pays,nom asc;
 
 alter table avion
 add column statut_avion varchar(50)
@@ -24,7 +24,7 @@ default 'actif';
 
 update employer
 set statut_employer = 'en congés'
-where UUID_employer in (select UUID_employer from vol_employer join vol using (UUID_vol));
+where UUID_employer in (select UUID_employer from vol_employer join vol using (UUID_vol) where ID_avion='');
 
 alter table employer
 add constraint ck_statut_employer check (statut_employer in ('actif','en congés'));
