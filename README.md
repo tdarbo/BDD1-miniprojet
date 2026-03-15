@@ -55,12 +55,11 @@ Voici la liste des données unitaires extraites du modèle. Les clés étrangèr
 ## 3.MLD correspondant
 
 pays = (Code_pays VARCHAR(50), Nom_pays VARCHAR(50));\
-Aéroport = (ICAO CHAR(4), IATA CHAR(3), Ville VARCHAR(50), #Code_pays);\
-Compagnie_aérienne = (IATA CHAR(2), Nom VARCHAR(50), Date_création DATE, #Code_pays);\
-Employer = (UUID_employer CHAR(36), Nom VARCHAR(50), Prénom VARCHAR(50), Date_naissance VARCHAR(50), Date_embauche VARCHAR(50), Role VARCHAR(50), #Code_pays, #IATA);\
+Aéroport = (ICAO CHAR(4), IATA_aéroport CHAR(3), Ville VARCHAR(50), #Code_pays);\
+Compagnie_aérienne = (IATA_compagnie CHAR(2), Nom VARCHAR(50), Date_création DATE, #Code_pays);\
+Employer = (UUID_employer CHAR(36), Nom VARCHAR(50), Prénom VARCHAR(50), Date_naissance VARCHAR(50), Date_embauche VARCHAR(50), Role VARCHAR(50), #Code_pays, #IATA_compagnie);\
 Voyageur = (UUID_voyageur CHAR(36), Nom VARCHAR(50), Prénom VARCHAR(50), Date_naissance DATE, Interdit_de_vol LOGICAL, #Code_pays);\
-Avion = (ID_avion VARCHAR(15), Code_avion VARCHAR(10), #IATA, #Code_pays);\
-Vol = (UUID_vol CHAR(36), Code_vol VARCHAR(50), Date_départ_GMT_1_ DATETIME, Date_arrivé_GMT_1_ DATETIME, #ID_avion);\
+Avion = (ID_avion VARCHAR(15), Code_avion VARCHAR(10), #IATA_compagnie, #Code_pays);\
+Vol = (UUID_vol CHAR(36), Code_vol VARCHAR(50), Date_départ_GMT_1_ DATETIME, Date_arrivé_GMT_1_ DATETIME, #ID_avion, #ICAO_départ, #ICAO_arrivé);\
 Vol_Voyageurs = (#UUID_vol, #UUID_voyageur);\
 Vol_Employer = (#UUID_vol, #UUID_employer);\
-Vol_Aéroport = (#ICAO, #UUID_vol);
