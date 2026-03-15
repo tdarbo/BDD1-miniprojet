@@ -28,7 +28,7 @@ CREATE TABLE Employer(
                          Prénom VARCHAR(50),
                          Date_naissance VARCHAR(50),
                          Date_embauche VARCHAR(50),
-                         Role VARCHAR(50),
+                         Role_employer VARCHAR(50),
                          Code_pays VARCHAR(50) NOT NULL,
                          IATA_compagnie CHAR(2) NOT NULL,
                          PRIMARY KEY(UUID_employer),
@@ -63,8 +63,12 @@ CREATE TABLE Vol(
                     Date_départ_GMT_1_ DATETIME,
                     Date_arrivé_GMT_1_ DATETIME,
                     ID_avion VARCHAR(15) NOT NULL,
+                    ICAO_départ CHAR(4),
+                    ICAO_arrivé CHAR(4),
                     PRIMARY KEY(UUID_vol),
-                    FOREIGN KEY(ID_avion) REFERENCES Avion(ID_avion)
+                    FOREIGN KEY(ID_avion) REFERENCES Avion(ID_avion),
+                    FOREIGN KEY(ICAO_départ) REFERENCES Aéroport(ICAO),
+                    FOREIGN KEY(ICAO_arrivé) REFERENCES Aéroport(ICAO)
 );
 
 CREATE TABLE Vol_Voyageur(
@@ -81,12 +85,4 @@ CREATE TABLE Vol_Employer(
                              PRIMARY KEY(UUID_vol, UUID_employer),
                              FOREIGN KEY(UUID_vol) REFERENCES Vol(UUID_vol),
                              FOREIGN KEY(UUID_employer) REFERENCES Employer(UUID_employer)
-);
-
-CREATE TABLE Vol_Aéroport(
-                             ICAO CHAR(4),
-                             UUID_vol CHAR(36),
-                             PRIMARY KEY(ICAO, UUID_vol),
-                             FOREIGN KEY(ICAO) REFERENCES Aéroport(ICAO),
-                             FOREIGN KEY(UUID_vol) REFERENCES Vol(UUID_vol)
 );

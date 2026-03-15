@@ -16,7 +16,7 @@ ALTER TABLE Vol
 
 ALTER TABLE Employer
     ADD CONSTRAINT ck_role_enum
-    CHECK ( ROLE IN ('Pilote','Copilote','Cdb','Hôtesse','Steward') );
+    CHECK ( role_employer IN ('Pilote','Copilote','Cdb','Hôtesse','Steward') );
 
 ALTER TABLE pays
     ADD CONSTRAINT ck_code_pays CHECK ( Code_pays REGEXP '^[A-Z]{3}$');
