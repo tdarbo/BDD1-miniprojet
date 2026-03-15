@@ -66,9 +66,9 @@ and IATA_compagnie!=(
 
 -- étude de l'expérience des employers
 
-select UUID_employer,count(UUID_vol) 
-from vol_employer 
+select UUID_employer,nom,prénom,count(UUID_vol) 
+from vol_employer join employer using(UUID_employer)
 where UUID_employer in 
-	(select UUID_employer from vol_employer where UUID_vol='vol-0001-0000-0000-0000-000000000001') 
+	(select UUID_employer from vol_employer where UUID_vol='34137eee-a25c-49ca-9bfd-d7f3f43c9879') 
 group by UUID_employer;
 
