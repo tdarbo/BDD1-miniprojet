@@ -56,7 +56,7 @@ with open('./3_insert_data.sql', 'w', encoding='utf-8') as f:
     f.write(",\n".join([f"('{a[0]}', '{a[1]}', '{a[2]}', '{a[3]}')" for a in avions]) + ";\n\n")
 
     # Employés
-    f.write("INSERT INTO Employer (UUID_employer, Nom, Prénom, Date_naissance, Date_embauche, Role, Code_pays, IATA_compagnie) VALUES\n")
+    f.write("INSERT INTO Employer (UUID_employer, Nom, Prénom, Date_naissance, Date_embauche, Role_employer, Code_pays, IATA_compagnie) VALUES\n")
     f.write(",\n".join([f"('{e['uuid']}', '{e['nom']}', '{e['prenom']}', '{e['naissance']}', '{e['embauche']}', '{e['role']}', '{e['pays']}', '{e['iata_comp']}')" for e in employes]) + ";\n\n")
 
     # Voyageurs
